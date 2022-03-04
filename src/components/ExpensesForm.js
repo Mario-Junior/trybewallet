@@ -1,39 +1,63 @@
 import React, { Component } from 'react';
 
 class ExpensesForm extends Component {
+  state = {
+    value: '',
+    description: '',
+    currency: 'USD',
+    payMethod: 'Dinheiro',
+    tag: 'Alimentação',
+  }
+
+  handleInputChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  }
+
   render() {
+    const { value, description, currency, payMethod, tag } = this.state;
     return (
       <form>
         Valor:
         {' '}
         <input
           type="number"
+          name="value"
           data-testid="value-input"
+          value={ value }
+          onChange={ this.handleInputChange }
         />
         Descrição:
         {' '}
         <input
           type="text"
+          name="description"
           data-testid="description-input"
+          value={ description }
+          onChange={ this.handleInputChange }
         />
         <label htmlFor="currency">
-          Moeda:
+          Moeda
           {' '}
           <select
+            name="currency"
             data-testid="currency-input"
-            id="currency"
+            value={ currency }
+            onChange={ this.handleInputChange }
           >
-            <option>BRL</option>
-            <option>EUR</option>
             <option>USD</option>
+            <option>BTC</option>
+            <option>EUR</option>
           </select>
         </label>
-        <label htmlFor="method">
+        <label htmlFor="payMethod">
           Método de pagamento:
           {' '}
           <select
+            name="payMethod"
             data-testid="method-input"
-            id="method"
+            value={ payMethod }
+            onChange={ this.handleInputChange }
           >
             <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
@@ -44,8 +68,10 @@ class ExpensesForm extends Component {
           Tag:
           {' '}
           <select
+            name="tag"
             data-testid="tag-input"
-            id="tag"
+            value={ tag }
+            onChange={ this.handleInputChange }
           >
             <option value="Alimentação">Alimentação</option>
             <option value="Lazer">Lazer</option>
