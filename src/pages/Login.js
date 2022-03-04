@@ -13,6 +13,16 @@ class Login extends React.Component {
     });
   }
 
+  // Ref. Regular expression for email validation at:
+  // https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
+  enableEnterButton = () => {
+    const { email, password } = this.state;
+    const regex = /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/i;
+    const MIN_LENGTH = 6;
+
+    return !regex.test(email) || password.length < MIN_LENGTH;
+  }
+
   render() {
     const { email, password } = this.state;
     return (
@@ -35,12 +45,12 @@ class Login extends React.Component {
         />
         <button
           type="button"
-          disabled
+          disabled={ this.enableEnterButton() }
         >
           Entrar
         </button>
       </div>
-    )
+    );
   }
 }
 
