@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addExpense, fetchCurrenciesThunk } from '../actions';
-// import apiRequest from '../services/api';
+import { Link } from 'react-router-dom';
+import { addExpense as addExpenseAction, fetchCurrenciesThunk } from '../actions';
+import apiRequest from '../services/api';
+
+const INITIAL_STATE = {
+  value: '',
+  description: '',
+  currency: 'USD',
+  method: 'Dinheiro',
+  tag: 'Alimentação',
+  exchangeRates: {},
+};
 
 class ExpensesForm extends Component {
   state = {
-    value: '',
-    description: '',
-    currency: 'USD',
-    payMethod: 'Dinheiro',
-    tag: 'Alimentação',
+    ...INITIAL_STATE,
   }
 
   componentDidMount() {
@@ -23,13 +29,22 @@ class ExpensesForm extends Component {
     this.setState({ [name]: value });
   }
 
+  handleButtonClick = async () => {
+    const { addExpense } = this.props;
+    const exchangeRates = await apiRequest();
+
+    this.setState({ exchangeRates });
+    addExpense(this.state);
+
+    this.setState(INITIAL_STATE);
+  }
+
   render() {
-    const { value, description, currency, payMethod, tag } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     const { currencies } = this.props;
     return (
       <form>
         Valor:
-        {' '}
         <input
           type="number"
           name="value"
@@ -38,7 +53,6 @@ class ExpensesForm extends Component {
           onChange={ this.handleInputChange }
         />
         Descrição:
-        {' '}
         <input
           type="text"
           name="description"
@@ -62,13 +76,13 @@ class ExpensesForm extends Component {
             ))}
           </select>
         </label>
-        <label htmlFor="payMethod">
+        <label htmlFor="method">
           Método de pagamento:
-          {' '}
           <select
-            name="payMethod"
+            id="method"
+            name="method"
             data-testid="method-input"
-            value={ payMethod }
+            value={ method }
             onChange={ this.handleInputChange }
           >
             <option value="Dinheiro">Dinheiro</option>
@@ -78,8 +92,8 @@ class ExpensesForm extends Component {
         </label>
         <label htmlFor="tag">
           Tag:
-          {' '}
           <select
+            id="tag"
             name="tag"
             data-testid="tag-input"
             value={ tag }
@@ -94,9 +108,11 @@ class ExpensesForm extends Component {
         </label>
         <button
           type="button"
+          onClick={ this.handleButtonClick }
         >
           Adicionar despesa
         </button>
+        <Link to="/">Logout</Link>
       </form>
     );
   }
@@ -108,12 +124,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addExpense: (expense) => dispatch(addExpense(expense)),
+  addExpense: (expense) => dispatch(addExpenseAction(expense)),
   fetchCurrencies: () => dispatch(fetchCurrenciesThunk()),
 });
 
 ExpensesForm.propTypes = {
-  // addExpense: PropTypes.func.isRequired,
+  addExpense: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   fetchCurrencies: PropTypes.func.isRequired,
 };
