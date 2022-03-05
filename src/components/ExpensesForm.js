@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addExpense, fetchCurrenciesThunk } from '../actions';
+// import apiRequest from '../services/api';
 
 class ExpensesForm extends Component {
   state = {
@@ -7,6 +11,11 @@ class ExpensesForm extends Component {
     currency: 'USD',
     payMethod: 'Dinheiro',
     tag: 'Alimentação',
+  }
+
+  componentDidMount() {
+    const { fetchCurrencies } = this.props;
+    fetchCurrencies();
   }
 
   handleInputChange = ({ target }) => {
@@ -90,4 +99,19 @@ class ExpensesForm extends Component {
   }
 }
 
-export default ExpensesForm;
+const mapStateToProps = (state) => ({
+  currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addExpense: (expense) => dispatch(addExpense(expense)),
+  fetchCurrencies: () => dispatch(fetchCurrenciesThunk()),
+});
+
+ExpensesForm.propTypes = {
+  // addExpense: PropTypes.func.isRequired,
+  fetchCurrencies: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExpensesForm);

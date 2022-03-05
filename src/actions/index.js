@@ -1,7 +1,20 @@
+import apiRequest from '../services/api';
+
 // Coloque aqui suas actions
 export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const GET_CURRENCIES = 'GET_CURRENCIES';
 
 export const saveEmail = (value) => ({ type: SAVE_EMAIL, value });
 
 export const addExpense = (payload) => ({ type: ADD_EXPENSE, payload });
+
+const getCurrencies = (payload) => ({ type: GET_CURRENCIES, payload });
+
+export const fetchCurrenciesThunk = () => async (dispatch) => {
+  const response = await apiRequest();
+  const currencies = Object.keys(response).filter(
+    (currency) => currency !== 'USDT',
+  );
+  dispatch(getCurrencies(currencies));
+};
