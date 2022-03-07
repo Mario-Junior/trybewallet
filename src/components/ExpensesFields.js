@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { deleteExpense as deleteExpenseAction } from '../actions';
 
 class ExpensesFields extends Component {
@@ -34,7 +36,7 @@ class ExpensesFields extends Component {
                     data-testid="delete-btn"
                     onClick={ () => deleteExpense(id) }
                   >
-                    Excluir
+                    <FontAwesomeIcon icon={ faTrashCan } />
                   </button>
                 </td>
               </tr>
