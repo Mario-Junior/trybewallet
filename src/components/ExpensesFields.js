@@ -27,6 +27,14 @@ class ExpensesFields extends Component {
                 <td>{exchangeRate.toFixed(2)}</td>
                 <td>{convertedValue.toFixed(2)}</td>
                 <td>Real</td>
+                <td>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                  >
+                    Excluir
+                  </button>
+                </td>
               </tr>
             );
           },
