@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-class Header extends Component {
+class WalletHeader extends Component {
   render() {
     const { user, expenses } = this.props;
 
@@ -31,9 +31,9 @@ const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
-Header.propTypes = {
+WalletHeader.propTypes = {
   user: PropTypes.string.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(WalletHeader);
