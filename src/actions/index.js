@@ -4,6 +4,7 @@ import apiRequest from '../services/api';
 export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const GET_CURRENCIES = 'GET_CURRENCIES';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export const saveEmail = (value) => ({ type: SAVE_EMAIL, value });
 
@@ -18,3 +19,5 @@ export const fetchCurrenciesThunk = () => async (dispatch) => {
   );
   dispatch(getCurrencies(currencies));
 };
+
+export const deleteExpense = (payload) => ({ type: DELETE_EXPENSE, payload });
