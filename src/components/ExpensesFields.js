@@ -55,8 +55,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 ExpensesFields.propTypes = {
-  expenses: PropTypes.shape.isRequired,
   deleteExpense: PropTypes.func.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpensesFields);
