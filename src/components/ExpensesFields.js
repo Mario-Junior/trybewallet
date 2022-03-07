@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { deleteExpense as deleteExpenseAction } from '../actions';
 
 class ExpensesFields extends Component {
@@ -30,6 +30,14 @@ class ExpensesFields extends Component {
                 <td>{exchangeRate.toFixed(2)}</td>
                 <td>{convertedValue.toFixed(2)}</td>
                 <td>Real</td>
+                <td>
+                  <button
+                    type="button"
+                    data-testid="edit-btn"
+                  >
+                    <FontAwesomeIcon icon={ faPenToSquare } />
+                  </button>
+                </td>
                 <td>
                   <button
                     type="button"

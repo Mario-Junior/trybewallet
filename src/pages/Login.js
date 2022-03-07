@@ -1,4 +1,5 @@
 import React from 'react';
+import './login.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { saveEmail } from '../actions';
@@ -37,31 +38,36 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <input
-          type="email"
-          name="email"
-          data-testid="email-input"
-          placeholder="email@domain.com"
-          value={ email }
-          onChange={ this.handleInputChange }
-        />
-        <input
-          type="password"
-          name="password"
-          data-testid="password-input"
-          placeholder="insira sua senha"
-          value={ password }
-          onChange={ this.handleInputChange }
-        />
-        <button
-          type="button"
-          disabled={ this.enableEnterButton() }
-          onClick={ this.handleOnClickEnter }
-        >
-          Entrar
-        </button>
-      </div>
+      <main className="login-page">
+        <div className="login-container">
+          <h1>TRYBE Wallet</h1>
+          <input
+            className="login-input"
+            type="email"
+            name="email"
+            data-testid="email-input"
+            placeholder="email@domain.com"
+            value={ email }
+            onChange={ this.handleInputChange }
+          />
+          <input
+            className="login-input"
+            type="password"
+            name="password"
+            data-testid="password-input"
+            placeholder="digite sua senha"
+            value={ password }
+            onChange={ this.handleInputChange }
+          />
+          <button
+            type="button"
+            disabled={ this.enableEnterButton() }
+            onClick={ this.handleOnClickEnter }
+          >
+            Entrar
+          </button>
+        </div>
+      </main>
     );
   }
 }
