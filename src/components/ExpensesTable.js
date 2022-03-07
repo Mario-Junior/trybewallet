@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class ExpensesTable extends Component {
   render() {
@@ -8,4 +9,8 @@ class ExpensesTable extends Component {
   }
 }
 
-export default ExpensesTable;
+const mapStateToProps = (state) => ({
+  expenses: state.wallet.expenses,
+});
+
+export default connect(mapStateToProps, null)(ExpensesTable);
