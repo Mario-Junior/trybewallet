@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import ExpensesFields from './ExpensesFields';
 
-class ExpensesTable extends Component {
+const headerFields = [
+  'Descrição',
+  'Tag',
+  'Método de pagamento',
+  'Valor',
+  'Moeda',
+  'Câmbio utilizado',
+  'Valor convertido',
+  'Moeda de conversão',
+  'Editar/Excluir',
+];
+
+class ExpensesHeader extends Component {
   render() {
     return (
-      <table />
+      <table>
+        <thead>
+          <tr>
+            {headerFields.map((field) => (
+              <th key={ field }>{field}</th>
+            ))}
+          </tr>
+        </thead>
+        <ExpensesFields />
+      </table>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  expenses: state.wallet.expenses,
-});
-
-export default connect(mapStateToProps, null)(ExpensesTable);
+export default ExpensesHeader;
