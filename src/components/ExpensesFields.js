@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { deleteExpense as deleteExpenseAction } from '../actions';
+import { deleteExpense as deleteExpenseAction,
+  getExpenseToEdit as getExpenseToEditAction } from '../actions';
 
 class ExpensesFields extends Component {
   render() {
-    const { expenses, deleteExpense } = this.props;
+    const { expenses, deleteExpense, getExpenseToEdit } = this.props;
     return (
       <tbody>
         {expenses.map(
@@ -34,6 +35,7 @@ class ExpensesFields extends Component {
                   <button
                     type="button"
                     data-testid="edit-btn"
+                    onClick={ () => getExpenseToEdit(id) }
                   >
                     <FontAwesomeIcon icon={ faPenToSquare } />
                   </button>
@@ -60,10 +62,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpense: (id) => dispatch(deleteExpenseAction(id)),
+  getExpenseToEdit: (id) => dispatch(getExpenseToEditAction(id)),
 });
 
 ExpensesFields.propTypes = {
   deleteExpense: PropTypes.func.isRequired,
+  getExpenseToEdit: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 

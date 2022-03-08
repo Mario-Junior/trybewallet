@@ -31,7 +31,7 @@ const wallet = (state = INITIAL_STATE, action) => {
   case GET_EXPENSE_TO_EDIT:
     return {
       ...state,
-      editId: action.payload,
+      expenseId: action.payload,
       isEditing: true,
     };
   case EDIT_EXPENSE:
