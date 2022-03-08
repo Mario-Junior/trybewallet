@@ -37,8 +37,6 @@ class ExpensesFields extends Component {
                   >
                     <FontAwesomeIcon icon={ faPenToSquare } />
                   </button>
-                </td>
-                <td>
                   <button
                     type="button"
                     data-testid="delete-btn"
