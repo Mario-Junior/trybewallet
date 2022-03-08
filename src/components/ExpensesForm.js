@@ -24,6 +24,8 @@ class ExpensesForm extends Component {
     fetchCurrencies();
   }
 
+  // Ref.: How to "Handle infinite loop in componentDidUpdate", at
+  // https://stackoverflow.com/questions/56818044/handle-infinite-loop-in-componentdidupdate
   componentDidUpdate(nextProps) {
     const { expenses, expenseId, isEditing } = this.props;
 
