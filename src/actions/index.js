@@ -5,6 +5,7 @@ export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const GET_CURRENCIES = 'GET_CURRENCIES';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const saveEmail = (value) => ({ type: SAVE_EMAIL, value });
 
@@ -21,3 +22,5 @@ export const fetchCurrenciesThunk = () => async (dispatch) => {
 };
 
 export const deleteExpense = (payload) => ({ type: DELETE_EXPENSE, payload });
+
+export const editExpense = (payload) => ({ type: EDIT_EXPENSE, payload });
