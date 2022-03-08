@@ -18,9 +18,20 @@ class WalletHeader extends Component {
     }, 0);
     return (
       <header>
-        <h4 data-testid="email-field">{user}</h4>
-        <span data-testid="total-field">{sum.toFixed(2)}</span>
-        <span data-testid="header-currency-field"> BRL</span>
+        <h1>TRYBE Wallet</h1>
+        <div className="user-info">
+          <p>
+            E-mail:
+            {' '}
+            <span data-testid="email-field">{user}</span>
+          </p>
+          <p>
+            Despesa Total:
+            {' '}
+            <span data-testid="total-field">{sum.toFixed(2)}</span>
+          </p>
+          <p data-testid="header-currency-field"> BRL</p>
+        </div>
       </header>
     );
   }

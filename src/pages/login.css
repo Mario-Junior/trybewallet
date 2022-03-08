@@ -1,13 +1,15 @@
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.login-page, .login-page .login-container {
-  align-items: center; 
+.login-page {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .login-container h1 {
@@ -16,14 +18,12 @@
   margin-bottom: 35px;
 }
 
-.login-page {
-  justify-content: center;
-  min-height: 100vh;
-}
-
 .login-container {
+  align-items: center;
   border: 4px solid #29292e;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   min-height: 60vh;
   padding: 2vw;
@@ -39,16 +39,11 @@
   width: calc(130px + 30vw);
 }
 
-.login-container button:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
 .login-container button {
   background-color: #73c585;
   border: 1px solid #29292e;
   border-radius: 8px;
-  color: #fff;
+  color: white;
   cursor: pointer;
   font-size: 20px;
   font-weight: 500;
@@ -58,6 +53,11 @@
   width: calc(130px + 30vw);
 }
 
-.login-container button:not(disabled):hover {
+.login-container button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.login-container button:enabled:hover {
   background-color: #218738;
 }

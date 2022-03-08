@@ -1,4 +1,5 @@
 import React from 'react';
+import './wallet.css';
 import ExpensesForm from '../components/ExpensesForm';
 import ExpensesTable from '../components/ExpensesTable';
 import Header from '../components/WalletHeader';
