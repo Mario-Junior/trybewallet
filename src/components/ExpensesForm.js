@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addExpense as addExpenseAction, fetchCurrenciesThunk } from '../actions';
+import { addExpense as addExpenseAction, editExpense as editExpenseAction,
+  fetchCurrenciesThunk } from '../actions';
 import apiRequest from '../services/api';
 
 const INITIAL_STATE = {
@@ -23,18 +24,56 @@ class ExpensesForm extends Component {
     fetchCurrencies();
   }
 
+  componentDidUpdate(nextProps) {
+    const { expenses, expenseId, isEditing } = this.props;
+
+    if (isEditing && isEditing !== nextProps.isEditing) {
+      const { value, description, currency, method, tag } = expenses[expenseId];
+      this.setState({ value, description, currency, method, tag });
+    }
+  }
+
   handleInputChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   }
 
-  handleButtonClick = async () => {
+  handleButtonAddExpense = async () => {
     const { addExpense } = this.props;
     const exchangeRates = await apiRequest();
 
     this.setState({ exchangeRates });
     addExpense(this.state);
 
+    this.setState(INITIAL_STATE);
+  }
+
+  conditionalButtonRender = () => {
+    const { value, description, currency, method, tag } = this.state;
+    const { expenseId: id, isEditing } = this.props;
+    const expense = { id, value, description, currency, method, tag };
+
+    return isEditing ? (
+      <button
+        type="button"
+        onClick={ () => this.handleButtonEditExpense(expense) }
+      >
+        Editar despesa
+      </button>
+    ) : (
+      <button
+        type="button"
+        onClick={ this.handleButtonAddExpense }
+      >
+        Adicionar despesa
+      </button>
+    );
+  }
+
+  handleButtonEditExpense(expense) {
+    const { editExpense } = this.props;
+
+    editExpense(expense);
     this.setState(INITIAL_STATE);
   }
 
@@ -110,12 +149,7 @@ class ExpensesForm extends Component {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
-        <button
-          type="button"
-          onClick={ this.handleButtonClick }
-        >
-          Adicionar despesa
-        </button>
+        { this.conditionalButtonRender() }
       </form>
     );
   }
@@ -124,17 +158,24 @@ class ExpensesForm extends Component {
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
   expenses: state.wallet.expenses,
+  expenseId: state.wallet.expenseId,
+  isEditing: state.wallet.isEditing,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addExpense: (expense) => dispatch(addExpenseAction(expense)),
+  editExpense: (expense) => dispatch(editExpenseAction(expense)),
   fetchCurrencies: () => dispatch(fetchCurrenciesThunk()),
 });
 
 ExpensesForm.propTypes = {
-  addExpense: PropTypes.func.isRequired,
-  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  fetchCurrencies: PropTypes.func.isRequired,
-};
+  currencies: PropTypes.arrayOf(PropTypes.string),
+  expenses: PropTypes.arrayOf(PropTypes.shape),
+  fetchCurrencies: PropTypes.func,
+  addExpense: PropTypes.func,
+  editExpense: PropTypes.func,
+  expenseId: PropTypes.number,
+  isEditing: PropTypes.bool,
+}.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpensesForm);

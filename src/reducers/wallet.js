@@ -43,7 +43,7 @@ const wallet = (state = INITIAL_STATE, action) => {
         }
         return expense;
       }),
-      expenseId: null,
+      expenseId: '',
       isEditing: false,
     };
   default:
