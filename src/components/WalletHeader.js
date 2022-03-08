@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class WalletHeader extends Component {
   render() {
@@ -31,6 +32,7 @@ class WalletHeader extends Component {
             <span data-testid="total-field">{sum.toFixed(2)}</span>
           </p>
           <p data-testid="header-currency-field"> BRL</p>
+          <Link to="/">Logout</Link>
         </div>
       </header>
     );

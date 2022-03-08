@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { addExpense as addExpenseAction, fetchCurrenciesThunk } from '../actions';
 import apiRequest from '../services/api';
 
@@ -45,6 +44,7 @@ class ExpensesForm extends Component {
     return (
       <form>
         Valor:
+        {' '}
         <input
           type="number"
           name="value"
@@ -53,6 +53,7 @@ class ExpensesForm extends Component {
           onChange={ this.handleInputChange }
         />
         Descrição:
+        {' '}
         <input
           type="text"
           name="description"
@@ -62,6 +63,7 @@ class ExpensesForm extends Component {
         />
         <label htmlFor="currency">
           Moeda
+          {' '}
           <select
             id="currency"
             name="currency"
@@ -78,6 +80,7 @@ class ExpensesForm extends Component {
         </label>
         <label htmlFor="method">
           Método de pagamento:
+          {' '}
           <select
             id="method"
             name="method"
@@ -92,6 +95,7 @@ class ExpensesForm extends Component {
         </label>
         <label htmlFor="tag">
           Tag:
+          {' '}
           <select
             id="tag"
             name="tag"
@@ -112,7 +116,6 @@ class ExpensesForm extends Component {
         >
           Adicionar despesa
         </button>
-        <Link to="/">Logout</Link>
       </form>
     );
   }
