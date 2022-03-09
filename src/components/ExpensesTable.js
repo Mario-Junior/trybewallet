@@ -16,16 +16,18 @@ const headerFields = [
 class ExpensesHeader extends Component {
   render() {
     return (
-      <table>
-        <thead>
-          <tr>
-            {headerFields.map((field) => (
-              <th key={ field }>{field}</th>
-            ))}
-          </tr>
-        </thead>
-        <ExpensesFields />
-      </table>
+      <div className="container">
+        <table>
+          <thead>
+            <tr>
+              {headerFields.map((field) => (
+                <th key={ field }>{field}</th>
+              ))}
+            </tr>
+          </thead>
+          <ExpensesFields />
+        </table>
+      </div>
     );
   }
 }

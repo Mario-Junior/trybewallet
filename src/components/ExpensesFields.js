@@ -33,6 +33,7 @@ class ExpensesFields extends Component {
                 <td>Real</td>
                 <td>
                   <button
+                    className="edit-btn"
                     type="button"
                     data-testid="edit-btn"
                     onClick={ () => getExpenseToEdit(id) }
@@ -40,6 +41,7 @@ class ExpensesFields extends Component {
                     <FontAwesomeIcon icon={ faPenToSquare } />
                   </button>
                   <button
+                    className="delete-btn"
                     type="button"
                     data-testid="delete-btn"
                     onClick={ () => deleteExpense(id) }

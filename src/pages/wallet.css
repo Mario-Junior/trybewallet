@@ -21,38 +21,72 @@ header .user-info {
   justify-content: space-between;
 }
 
-table {
-  border-collapse: separate;
-  border-spacing: 2px;
-  text-indent: initial;
+.expenses-container {
+  margin: 0 auto;
+  padding: 20px 40px;
 }
 
-table thead tr {
-  align-items: center;
-  border-bottom: 1px solid rgba(41, 41, 46, 0.4);
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  justify-content: center;
-  padding: 0 20px;
-  width: 100vw;
-}
-
-table tbody tr {
-  align-items: center;
-  border-bottom: 1px solid rgba(41, 41, 46, 0.4);
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  justify-content: center;
-  padding: 0 20px;
-  width: 100vw;
-}
-
-td {
-  vertical-align: inherit;
-}
-
-table tbody tr td {
+form {
   align-items: center;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: calc(5px + 2vw);
+}
+
+@media screen and ( max-width : 470px ) {
+
+  form {
+    align-items: stretch;
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: calc(5px + 2vw);
+  }
+}
+
+.container {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 2px;
+  margin: 0 auto;
+  text-indent: initial;
+  vertical-align: middle;
+  width: 100%;
+}
+
+table , thead , tbody {
+  text-align: center;
+}
+
+table , th , td {
+  border: 1px solid rgba(41, 41, 46, 0.4);
+  padding: 0.5vw;
+}
+
+th {
+  background-color: #03a86c;
+  color: white;
+}
+
+tr:nth-child( even ) {
+  background-color: #73c585;
+}
+
+td:last-child {
+  border: inherit;
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-btn {
+  background-color: lightblue;
+  font-size: x-large;
+}
+
+.delete-btn {
+  background-color: coral;
+  font-size: x-large;
 }
