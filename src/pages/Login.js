@@ -40,7 +40,7 @@ class Login extends React.Component {
     return (
       <main className="login-page">
         <div className="login-container">
-          <h1>TRYBE Wallet</h1>
+          <h1>BE Planned $$$</h1>
           <input
             className="login-input"
             type="email"

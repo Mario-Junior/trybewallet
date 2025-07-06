@@ -19,7 +19,7 @@ class WalletHeader extends Component {
     }, 0);
     return (
       <header>
-        <h1>TRYBE Wallet</h1>
+        <h1>Financial Planner</h1>
         <div className="user-info">
           <p>
             E-mail:
