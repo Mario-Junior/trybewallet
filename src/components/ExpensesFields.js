@@ -14,7 +14,7 @@ class ExpensesFields extends Component {
         {expenses.map(
           ({ id, description, tag, method, value, currency, exchangeRates }) => {
             const { ask, code, name } = exchangeRates[currency];
-            const btcMultiplier = 1000;
+            const btcMultiplier = 1;
 
             const exchangeName = name.split('/')[0];
             let exchangeRate = Number(ask);
