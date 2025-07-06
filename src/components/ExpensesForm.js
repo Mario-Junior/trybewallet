@@ -8,7 +8,7 @@ import apiRequest from '../services/api';
 const INITIAL_STATE = {
   value: '',
   description: '',
-  currency: 'USD',
+  currency: 'BRL',
   method: 'Dinheiro',
   tag: 'Alimentação',
   exchangeRates: {},
@@ -132,6 +132,7 @@ class ExpensesForm extends Component {
             <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
             <option value="Cartão de débito">Cartão de débito</option>
+            <option value="Pix">Pix</option>
           </select>
         </label>
         <label htmlFor="tag">
