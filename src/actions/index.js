@@ -16,9 +16,7 @@ const getCurrencies = (payload) => ({ type: GET_CURRENCIES, payload });
 
 export const fetchCurrenciesThunk = () => async (dispatch) => {
   const response = await apiRequest();
-  let BRL = { code: "BRL", name: "Real Brasileiro", ask: 1 };
-  let responseBrl = response.unshift(BRL);
-  const currencies = Object.keys(responseBrl).filter(
+  const currencies = Object.keys(response).filter(
     (currency) => currency !== 'USDT',
   );
   dispatch(getCurrencies(currencies));

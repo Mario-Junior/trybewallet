@@ -4,7 +4,9 @@ const apiRequest = async () => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    return data;
+    let Brl = { code: "BRL", name: "Real Brasileiro", ask: 1 };
+    let dataWithBrl = data.unshift(BRL);
+    return dataWithBrl;
   } catch (error) {
     return error;
   }
