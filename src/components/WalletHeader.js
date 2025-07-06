@@ -12,7 +12,7 @@ class WalletHeader extends Component {
       const adjustedValue = Number(value);
       let exchange = Number(ask);
 
-      const btcMultiplier = 1000;
+      const btcMultiplier = 1;
       if (code === 'BTC') exchange *= btcMultiplier;
 
       return acc + adjustedValue * exchange;
